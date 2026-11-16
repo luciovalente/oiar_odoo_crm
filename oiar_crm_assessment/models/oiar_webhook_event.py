@@ -12,4 +12,4 @@ class OiarWebhookEvent(models.Model):
     event_type = fields.Char()
     lead_id = fields.Many2one("crm.lead", ondelete="set null")
 
-    _sql_constraints = [("delivery_uniq", "unique(delivery_id)", "Delivery already handled.")]
+    _delivery_uniq = models.Constraint("unique(delivery_id)", "Delivery already handled.")
