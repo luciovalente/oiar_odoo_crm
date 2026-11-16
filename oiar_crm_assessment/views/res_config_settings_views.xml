@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_oiar" model="ir.ui.view">
+        <field name="name">res.config.settings.form.oiar</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="crm.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='crm']" position="inside">
+                <block title="OIAR Assessment" name="oiar_setting_container">
+                    <setting string="Connection" help="Where OIAR is and the key that lets Odoo create projects.">
+                        <div class="content-group">
+                            <div class="row mt8"><label for="oiar_base_url" class="col-lg-4"/><field name="oiar_base_url"/></div>
+                            <div class="row"><label for="oiar_api_key" class="col-lg-4"/><field name="oiar_api_key" password="True"/></div>
+                            <div class="row"><label for="oiar_portal_url" class="col-lg-4"/><field name="oiar_portal_url"/></div>
+                            <div class="row"><label for="oiar_scenario" class="col-lg-4"/><field name="oiar_scenario"/></div>
+                            <div class="row"><label for="oiar_dataroom_connector_id" class="col-lg-4"/><field name="oiar_dataroom_connector_id"/></div>
+                            <div class="mt8">
+                                <button name="action_oiar_test_connection" type="object" class="btn-link"
+                                        string="Test connection" icon="oi-arrow-right"/>
+                            </div>
+                        </div>
+                    </setting>
+                    <setting string="Report webhook"
+                             help="In OIAR set this URL as the report webhook of the account and paste the secret here.">
+                        <div class="content-group">
+                            <div class="row mt8"><label for="oiar_webhook_url" class="col-lg-4"/><field name="oiar_webhook_url"/></div>
+                            <div class="row"><label for="oiar_webhook_secret" class="col-lg-4"/><field name="oiar_webhook_secret" password="True"/></div>
+                            <div class="row"><label for="oiar_report_stage_id" class="col-lg-4"/><field name="oiar_report_stage_id"/></div>
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

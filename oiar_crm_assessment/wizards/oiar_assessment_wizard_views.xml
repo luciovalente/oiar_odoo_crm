@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="oiar_assessment_wizard_view_form" model="ir.ui.view">
+        <field name="name">oiar.assessment.wizard.form</field>
+        <field name="model">oiar.assessment.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="lead_id" invisible="1"/>
+                <p>This is exactly what is sent to OIAR to create the assessment project.</p>
+                <field name="preview" readonly="1" nolabel="1"/>
+                <group>
+                    <field name="confirmed"/>
+                </group>
+                <footer>
+                    <button name="action_start" type="object" string="Start" class="btn-primary"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

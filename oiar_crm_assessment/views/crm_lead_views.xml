@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="crm_lead_view_form_oiar" model="ir.ui.view">
+        <field name="name">crm.lead.form.oiar</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_oiar_start" type="object" string="Start OIAR assessment"
+                        invisible="oiar_project_id"/>
+                <button name="action_oiar_refresh_status" type="object" string="Refresh OIAR status"
+                        invisible="not oiar_project_id or oiar_status in ('completed', 'cancelled', 'error')"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="OIAR Assessment" name="oiar">
+                    <group>
+                        <group string="Input for the assessment">
+                            <field name="oiar_industry" readonly="oiar_project_id"/>
+                            <field name="oiar_company_size" readonly="oiar_project_id"/>
+                            <field name="oiar_current_systems" readonly="oiar_project_id"/>
+                            <field name="oiar_target_timeline" readonly="oiar_project_id"/>
+                        </group>
+                        <group string="Status">
+                            <field name="oiar_project_id"/>
+                            <field name="oiar_status"/>
+                            <field name="oiar_project_url" widget="url" invisible="not oiar_project_url"/>
+                        </group>
+                    </group>
+                    <p class="text-muted">
+                        The tags of the lead are sent as the Odoo apps of interest and the
+                        internal notes as the problems to solve.
+                    </p>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
