@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import _, fields, models
 
 from .oiar_client import OiarClient
 
@@ -56,8 +56,8 @@ class ResConfigSettings(models.TransientModel):
             "type": "ir.actions.client",
             "tag": "display_notification",
             "params": {
-                "title": self.env._("OIAR"),
-                "message": self.env._("Connection OK."),
+                "title": _("OIAR"),
+                "message": _("Connection OK."),
                 "type": "success",
                 "sticky": False,
             },

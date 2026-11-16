@@ -2,7 +2,7 @@ import logging
 
 from markupsafe import Markup, escape
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import html2plaintext
 
@@ -76,7 +76,7 @@ class CrmLead(models.Model):
         self.ensure_one()
         company = self._oiar_company_name()
         if not company:
-            raise UserError(self.env._("Set the customer (or the company name) on the lead first."))
+            raise UserError(_("Set the customer (or the company name) on the lead first."))
         get = self.env["ir.config_parameter"].sudo().get_param
         payload = {
             "name": f"{company} - {self.name}"[:200],
@@ -96,7 +96,7 @@ class CrmLead(models.Model):
     def action_oiar_start(self):
         self.ensure_one()
         if self.oiar_project_id:
-            raise UserError(self.env._("An OIAR assessment is already linked to this lead."))
+            raise UserError(_("An OIAR assessment is already linked to this lead."))
         wizard = self.env["oiar.assessment.wizard"].create({"lead_id": self.id})
         return {
             "type": "ir.actions.act_window",
@@ -104,17 +104,17 @@ class CrmLead(models.Model):
             "res_id": wizard.id,
             "view_mode": "form",
             "target": "new",
-            "name": self.env._("Start OIAR assessment"),
+            "name": _("Start OIAR assessment"),
         }
 
     def _oiar_create_project(self):
         self.ensure_one()
         if self.oiar_project_id:
-            raise UserError(self.env._("An OIAR assessment is already linked to this lead."))
+            raise UserError(_("An OIAR assessment is already linked to this lead."))
         project = OiarClient.from_env(self.env).create_project(self._oiar_payload())
         self.write({"oiar_project_id": project["id"], "oiar_status": project.get("status") or "created"})
         self.message_post(
-            body=Markup(escape(self.env._("OIAR assessment started (project %s).", project["id"]))),
+            body=Markup(escape(_("OIAR assessment started (project %s).", project["id"]))),
         )
         return project
 
@@ -187,7 +187,7 @@ class CrmLead(models.Model):
         # The report is text written from what external people answered: it is
         # attached as a file, never rendered as HTML in the chatter.
         self.message_post(
-            body=Markup(escape(self.env._("The OIAR assessment report is ready and attached."))),
+            body=Markup(escape(_("The OIAR assessment report is ready and attached."))),
             attachment_ids=attachments.ids,
             author_id=self.env.ref("base.partner_root").id,
             message_type="comment",
@@ -195,7 +195,7 @@ class CrmLead(models.Model):
         )
         self.activity_schedule(
             "mail.mail_activity_data_todo",
-            summary=self.env._("OIAR report ready: prepare the proposal"),
+            summary=_("OIAR report ready: prepare the proposal"),
             user_id=(self.user_id or self.create_uid).id,
         )
         stage_id = int(self.env["ir.config_parameter"].sudo().get_param(PARAM + "report_stage_id") or 0)

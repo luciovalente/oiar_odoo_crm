@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <form>
                 <field name="lead_id" invisible="1"/>
-                <p>This is exactly what is sent to OIAR to create the assessment project.</p>
+                <p>OIAR is an external service. Only the data below leaves Odoo, and only when you press Start.</p>
                 <field name="preview" readonly="1" nolabel="1"/>
                 <group>
                     <field name="confirmed"/>

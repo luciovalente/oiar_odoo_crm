@@ -43,6 +43,8 @@ class OiarWebhook(http.Controller):
 
         delivery = request.httprequest.headers.get("X-OIAR-Delivery") or event.get("id")
         events = env["oiar.webhook.event"].sudo()
+        if events.search_count([("delivery_id", "=", delivery)]):
+            return request.make_json_response({"status": "duplicate"})
         try:
             with env.cr.savepoint():
                 events.create({"delivery_id": delivery, "event_type": event_type, "lead_id": lead.id})

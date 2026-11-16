@@ -1,13 +1,50 @@
 <section class="oe_container">
-  <h2 class="oe_slogan">OIAR Assessment for CRM</h2>
-  <h3 class="oe_slogan">From the lead to the implementation assessment, without leaving Odoo.</h3>
-  <p>Start an <a href="https://oiarplatform.com">OIAR</a> Odoo implementation assessment from a CRM lead.
-  The customer is interviewed on OIAR; the approved report comes back to the lead.</p>
-  <ul>
-    <li><b>Start from the lead</b>: one button, with a preview of exactly what is sent.</li>
-    <li><b>Signed webhook</b>: the report is attached to the lead, announced in the chatter, with a follow-up activity and an optional stage change.</li>
-    <li><b>Status</b>: the state of the assessment is refreshed on the lead.</li>
-    <li><b>Safe by design</b>: HMAC signature with replay window, duplicate deliveries ignored, report stored as a file and never rendered as HTML.</li>
-  </ul>
-  <p><b>Requires</b> an OIAR account and an API key. Self-hosted or Odoo.sh (custom modules are not available on Odoo Online).</p>
+  <div class="oe_row oe_spaced">
+    <h2 class="oe_slogan">OIAR Assessment for CRM</h2>
+    <h3 class="oe_slogan">Start an Odoo implementation assessment from a lead and get the report back on the lead.</h3>
+  </div>
+</section>
+
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <h3>What it does</h3>
+    <ul>
+      <li><b>Start from the lead.</b> A "Start OIAR assessment" button opens a confirmation window that shows exactly what is sent. Nothing leaves Odoo before the user confirms.</li>
+      <li><b>Reuses what the lead already holds.</b> Company, language, industry, company size, current systems, desired timeline, tags (Odoo apps of interest) and internal notes (problems to solve).</li>
+      <li><b>Report back on the lead.</b> When the report is approved on OIAR it is attached to the lead (Markdown, plus PDF when available), a note is posted in the chatter, an activity is scheduled for the salesperson and the lead can move to a stage of your choice.</li>
+      <li><b>Status on the lead.</b> The state of the assessment is refreshed automatically and on demand.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <h3>External service and data</h3>
+    <p>This module needs an <b>OIAR account</b> and an API key: the assessment runs on the OIAR platform, not in Odoo. The module itself needs no activation key and your data stays yours.</p>
+    <p>Data sent to OIAR, only after the user confirms on the lead: company name, language, a reference to the lead, and, when filled, industry, company size, current systems, desired timeline, lead tags and lead internal notes. OIAR sends back the approved report to a webhook of your Odoo, accepted only when signed with the shared secret.</p>
+  </div>
+</section>
+
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <h3>Setup in three steps</h3>
+    <ol>
+      <li>Install the module and fill the OIAR section of the CRM settings (API URL and API key).</li>
+      <li>Register the webhook URL shown in the settings on your OIAR account and paste the secret in the settings.</li>
+      <li>Open a lead and press "Start OIAR assessment".</li>
+    </ol>
+    <p>Works on Odoo.sh and on-premise installations. Custom modules are not available on Odoo Online. The webhook URL must be reachable over HTTPS from the internet.</p>
+  </div>
+</section>
+
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <h3>Security</h3>
+    <ul>
+      <li>The webhook verifies an HMAC-SHA256 signature and rejects stale requests (5 minute window).</li>
+      <li>Repeated deliveries are recognised and handled once.</li>
+      <li>The report is stored as a file and never rendered as HTML.</li>
+    </ul>
+    <p>Support: use the issue tracker of the module repository.</p>
+  </div>
 </section>

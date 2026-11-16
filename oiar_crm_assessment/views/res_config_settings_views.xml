@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="//app[@name='crm']" position="inside">
                 <block title="OIAR Assessment" name="oiar_setting_container">
-                    <setting string="Connection" help="Where OIAR is and the key that lets Odoo create projects.">
+                    <setting string="Connection" help="OIAR is an external service. Starting an assessment sends it the data shown in the confirmation window of the lead. Where OIAR is and the key that lets Odoo create projects.">
                         <div class="content-group">
                             <div class="row mt8"><label for="oiar_base_url" class="col-lg-4"/><field name="oiar_base_url"/></div>
                             <div class="row"><label for="oiar_api_key" class="col-lg-4"/><field name="oiar_api_key" password="True"/></div>

@@ -1,6 +1,6 @@
 import json
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -27,6 +27,6 @@ class OiarAssessmentWizard(models.TransientModel):
     def action_start(self):
         self.ensure_one()
         if not self.confirmed:
-            raise UserError(self.env._("Confirm that the customer is informed before starting."))
+            raise UserError(_("Confirm that the customer is informed before starting."))
         self.lead_id._oiar_create_project()
         return {"type": "ir.actions.act_window_close"}
