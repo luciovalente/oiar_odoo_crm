@@ -1,6 +1,6 @@
 {
     "name": "OIAR Assessment for CRM",
-    "version": "VERSION.0.0.1.0",
+    "version": "20.0.0.0.1.0",
     "category": "Sales/CRM",
     "summary": "Start an Odoo implementation assessment from a CRM lead and get the report back",
     "description": """
